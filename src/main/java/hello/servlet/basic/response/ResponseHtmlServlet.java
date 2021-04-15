@@ -10,13 +10,16 @@ import java.io.PrintWriter;
 
 @WebServlet(name = "responseHtmlServlet", urlPatterns = "/response-html")
 public class ResponseHtmlServlet extends HttpServlet {
+
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        //Content-Type: text/html;charset=utf-8
+        // Content-Type: text/html;charset=utf-8
+        // [ 기본셋팅 ]
         response.setContentType("text/html");
         response.setCharacterEncoding("utf-8");
 
+        // HTTP 응답으로 HTML을 반환할 때는 content-type을 text/html 로 지정해야 한다.
         PrintWriter writer = response.getWriter();
         writer.println("<html>");
         writer.println("<body>");
@@ -24,4 +27,6 @@ public class ResponseHtmlServlet extends HttpServlet {
         writer.println("</body>");
         writer.println("</html>");
     }
+
+
 }
