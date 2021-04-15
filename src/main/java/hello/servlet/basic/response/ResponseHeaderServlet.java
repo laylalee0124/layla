@@ -6,13 +6,37 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet(name = "responseHeaderServlet", urlPatterns = "/response-header")
 public class ResponseHeaderServlet extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // [status-line]
         response.setStatus(HttpServletResponse.SC_OK); // 직접 코드적는 것보다 HttpServletResponse안에 상수로 정의된 값을 사용해줄것
 
+        // [manual setting - 직접세팅]
+        response.setHeader("Content-Type", "text/plain");
+        response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+        response.setHeader("Pragma", "no-cache");
+        response.setHeader("my-header", "hello");
+
+        // [header 편의 메서드]
+        content(response);
+
+        PrintWriter writer = response.getWriter();
+        System.out.println("writer = " + writer);
     }
+
+    // [content - 편의method]
+    private void content(HttpServletResponse response) {
+        //Content-Type: text/plain;charset=utf-8
+        //Content-Length: 2
+        //response.setHeader("Content-Type", "text/plain;charset=utf-8");
+        response.setContentType("text/plain");
+        response.setCharacterEncoding("utf-8");
+        //response.setContentLength(2); //(생략시 자동 생성)
+    }
+
 }
