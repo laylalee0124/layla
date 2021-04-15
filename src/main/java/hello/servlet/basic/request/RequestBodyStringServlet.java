@@ -28,9 +28,6 @@ public class RequestBodyStringServlet extends HttpServlet {
         // Display on browser
         response.getWriter().write("ok");
 
-        // add volume
-        // more
-        // more and more
-        // one more
+
     }
 }
