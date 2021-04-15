@@ -54,9 +54,9 @@ public class ResponseHeaderServlet extends HttpServlet {
     private void redirect(HttpServletResponse response) throws IOException {
 //        Status Code 302
 //        Location: /basic/hello-form.html
-
         //response.setStatus(HttpServletResponse.SC_FOUND); //302
         //response.setHeader("Location", "/basic/hello-form.html");
+
         response.sendRedirect("/basic/hello-form.html");
     }
 }
